@@ -52,7 +52,7 @@ Route::middleware([
     // category
     Route::get('category',[CategoryController::class,'index'])->name('admin#category');
     Route::post('category/create',[CategoryController::class,'categoryCreate'])->name('category#create');
-
+    Route::get('category/delete/{id}',[CategoryController::class,'categoryDelete'])->name('category#Delete');
 
     // post
     Route::get('post',[PostController::class,'index'])->name('admin#post');

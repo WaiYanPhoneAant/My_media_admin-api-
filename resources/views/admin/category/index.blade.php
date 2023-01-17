@@ -7,7 +7,7 @@
         <div class="alert alert-danger alert-dismissible fade show d-lg-none" role="alert">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li>{{$error}}</li>
                 @endforeach
             </ul>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -30,14 +30,14 @@
             @csrf
             <div class="mb-3">
                 <label for="category" class="form-label">Category Name</label>
-                <input type="text" class="form-control" name="name" id="category" aria-describedby="category">
+                <input type="text" class="form-control" name="name" id="category" value="{{old('name')}}" aria-describedby="category">
                 @error('name')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" name="description" class="form-control" id="description" cols="30" rows="3"></textarea>
+                <textarea name="description" name="description" class="form-control" id="description" value="{{old('description')}}" cols="30" rows="3"></textarea>
                 @error('description')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -65,17 +65,19 @@
                 <h3 class="card-title ">Category</h3>
 
                 <div class="card-tools col-6 col-md-5 col-lg-3">
-                    <form action="#" >
+                    <form action="{{route('admin#category')}}">
                         <div class="input-group input-group-sm ">
                                 <input type="text" name="searchKey" class="form-control " placeholder="Search...." aria-label="Search" aria-describedby="button-addon2">
                                 <button type="submit" class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
                         </div>
-
                     </form>
+                    @if (request('searchKey'))
+                    <span class="m-1 d-inline-block border border-1 p-1 rounded-1">{{request('searchKey')}}
+                        <a href="{{route('admin#category')}}"><i class="fa-regular fa-circle-xmark text-danger"></i></a>
+                    </span>
+                    @endif
 
-                    <!-- <span class="m-1 d-inline-block border border-1 p-1 rounded-1">searchKey
-                        <a href="#}"><i class="fa-regular fa-circle-xmark text-danger"></i></a>
-                    </span> -->
+
 
                 </div>
               </div>
@@ -91,6 +93,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (count($categories)==0)
+                            <td colspan="4">There is no categories</td>
+                        @endif
                         @foreach ($categories as $c)
 
 
@@ -104,7 +109,7 @@
                                   <button class="btn btn-sm bg-danger text-white"  data-bs-toggle="modal" data-bs-target="#m-{{$c->id}}"><i class="fas fa-trash-alt"></i></button>
                               </td>
                         </tr>
-                    @endforeach
+                        @endforeach
 
 
 
@@ -112,7 +117,7 @@
                 </table>
               </div>
               <div class="m-2">
-
+                {{ $categories->links() }}
               </div>
               <!-- /.card-body -->
             </div>
@@ -142,14 +147,14 @@
 
                     <div class="mb-3">
                         <label for="category" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" name="name" id="category" aria-describedby="category">
+                        <input type="text" class="form-control" name="name" value="{{old('name')}}" id="category" aria-describedby="category">
                         @error('name')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" name="description" aria-label="description" class="form-control" id="description" cols="30" rows="3"></textarea>
+                        <textarea name="description" name="description" aria-label="description" value="{{old('description')}}" class="form-control" id="description" cols="30" rows="3"></textarea>
                         @error('description')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -179,7 +184,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="{{route('admin#deleteAcc',$c->id)}}" type="button" class="btn btn-danger">Delete</a>
+          <a href="{{route('category#Delete',$c->id)}}" type="button" class="btn btn-danger">Delete</a>
         </div>
       </div>
     </div>

@@ -18,6 +18,7 @@ class ListController extends Controller
                         ->orWhere('gender','like','%'. request('searchKey') .'%')
                         ->orWhere('address','like','%'. request('searchKey') .'%');
                     })->paginate(10);
+            $users->appends(request()->all());
             return view('admin.list.index',compact('users'));
         }
         public function DeleteAccount($id)
@@ -28,8 +29,12 @@ class ListController extends Controller
             }else{
                if ($totalUser>1) {
                 # code...
-                User::where('id',$id)->delete();
-                return back()->with(['success'=>'Account Delete Success']);
+                $delete=User::where('id',$id)->delete();
+                if($delete){
+                    return back()->with(['success'=>'Account Delete Success']);
+                }else{
+                    return abort('404');
+                }
                }else{
                 return back()->with(['error'=>'Latest user can\'n delete']);
                }
