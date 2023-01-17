@@ -37,6 +37,9 @@ Route::middleware([
     //admin direct to Change Password Page
     Route::get('admin/PwChangePage',[ProfileController::class,'PasswordChangePage'])->name('admin#PwChangePage');
 
+    //admin direct to Change Password Page
+    Route::get('admin/deleteAcc/{id}',[ListController::class,'DeleteAccount'])->name('admin#deleteAcc');
+
     //admin Change Password
     Route::post('admin/PwChange',[ProfileController::class,'PasswordChange'])->name('admin#PwChange');
 

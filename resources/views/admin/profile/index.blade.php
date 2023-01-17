@@ -42,7 +42,7 @@
             <div class="mb-3">
                 <label for="Phone" class="form-label">Gender</label>
                 <select class="form-select" name="adminGender" aria-label="Choose your Gender">
-                    <option selected>Choose your Gender</option>
+                    <option value="" selected>Choose your Gender</option>
                     <option value="male" {{old('adminGender',Auth::user()->gender)=='male'?'selected':''}}>Male</option>
                     <option value="female" {{old('adminGender',Auth::user()->gender)=='female'?'selected':''}}>Female</option>
 
@@ -51,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Address</label>
-                <textarea name="adminAddress" class="form-control" id="" cols="30" rows="5">{{old('adminAddress',Auth::user()->address)}}</textarea>
+                <textarea name="adminAddress" aria-label="address" class="form-control" id="" cols="30" rows="5">{{old('adminAddress',Auth::user()->address)}}</textarea>
             </div>
 
 
