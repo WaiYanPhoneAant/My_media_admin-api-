@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\TrandPostController;
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::middleware([
     //admin
     Route::get('dashboard',[ProfileController::class,'index'])->name('dashboard');
 
+
+
     //admin Update
     Route::post('admin/update',[ProfileController::class,'Accupdate'])->name('admin#update');
 
@@ -45,8 +48,12 @@ Route::middleware([
 
     //adminList
     Route::get('admin/list',[ListController::class,'index'])->name('admin#list');
+
     // category
     Route::get('category',[CategoryController::class,'index'])->name('admin#category');
+    Route::post('category/create',[CategoryController::class,'categoryCreate'])->name('category#create');
+
+
     // post
     Route::get('post',[PostController::class,'index'])->name('admin#post');
     // trend_post

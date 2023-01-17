@@ -68,7 +68,7 @@
             <div class="border border-bottom border-1 navbar sec-nav sticky-top bg-dark z-3">
                 <div class="container-fluid p-2 d-flex justify-content-between">
                     <div class="header fs-3">
-                        <span class="d-none d-sm-block text-primary">@yield('header')</span>
+                        <span class="d-none d-sm-block fw-bold">@yield('header')</span>
                         <button class="navbar-toggler d-block d-sm-none mt-1" aria-label="navbar botton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                             <i class="fa-solid fa-bars fs-1 "></i>
                         </button>

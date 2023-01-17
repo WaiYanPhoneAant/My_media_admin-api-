@@ -96,7 +96,7 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
+</div>
   <!-- Button trigger modal -->
 
 @endsection
