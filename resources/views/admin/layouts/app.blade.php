@@ -27,33 +27,33 @@
         </div>
         <div class="mb-5"  style="margin-top: 6rem;">
             <ul class="navbar-nav justify-content-end flex-grow-1">
-                <li class="nav-item  @yield('profile') mb-1" aria-label="Profile">
+                <li class="nav-item  @yield('profile') mb-1" aria-label="Profile" title="profile">
                     <a href="{{route('dashboard')}}" aria-current="Page" class="nav-link d-flex ps-3   flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                         <i class="fa-solid fa-user pe-2"></i> <span class="d-sm-none d-md-block ">Profile</span>
                     </a>
                 </li>
-                <li class="nav-item  mb-1 @yield('list')"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
+                <li class="nav-item  mb-1 @yield('list')" title="admin list" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
                     <a href="{{route('admin#list')}}" aria-current="Page" class="nav-link d-flex ps-3  flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                         <i class="fa-solid fa-users  pe-2"></i><span class="d-sm-none d-md-block">Admin List </span>
                     </a>
                 </li>
-                <li class="nav-item  mb-1 @yield('category')"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
+                <li class="nav-item  mb-1 @yield('category')" title="category"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
                     <a href="{{route('admin#category')}}" aria-current="Page" class="nav-link d-flex ps-3  flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                         <i class="fa-solid fa-table-list  pe-2"></i> <span class="d-sm-none d-md-block">Category</span>
                     </a>
                 </li>
-                <li class="nav-item  mb-1 @yield('post')"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
+                <li class="nav-item  mb-1 @yield('post')" title="posts"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
                     <a href="{{route('admin#post')}}" aria-current="Page" class="nav-link d-flex ps-3  flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                         <i class="fa-regular fa-pen-to-square  pe-2"></i> <span class="d-sm-none d-md-block">Post</span>
                     </a>
                 </li>
-                <li class="nav-item  mb-1 @yield('trend_post')"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
+                <li class="nav-item  mb-1 @yield('trend_post')" title="trending post"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
                     <a href="{{route('admin#trendPost')}}" aria-current="Page" class="nav-link d-flex ps-3  flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                         <i class="fa-solid fa-ranking-star  pe-2"></i> <span class="d-sm-none d-md-block">Trending Post </span>
                     </a>
                 </li>
                 <form action="{{route('logout')}}" method="POST">
-                    <li class="nav-item  mb-1"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
+                    <li class="nav-item  mb-1" title="log out"  data-bs-dismiss="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-label="Close">
                         @csrf
                         <button  aria-current="Page" class="btn nav-link d-flex ps-3 text-danger col-12  flex-md-row align-items-start align-items-sm-center justify-content-sm-center justify-content-md-start  p-2 fs-6 ">
                             <i class="fa-solid fa-arrow-right-from-bracket  pe-2"></i><span class="d-sm-none d-md-block">Log Out </span>
