@@ -139,7 +139,7 @@
                                 @if ($p->image)
                                     <img src="{{asset('postImage/'.$p->image)}}" alt="" width="100px">
                                 @else
-                                    <img src="{{asset('postImage/default/default.png')}}" alt="" width="100px">
+                                    <img src="{{asset('postImage/default.png')}}" alt="" width="100px">
                                 @endif
                             </td>
                             <td>
