@@ -39,7 +39,7 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" name="description" class="form-control" id="description" value="{{old('description')}}" cols="30" rows="3"></textarea>
+                <textarea name="description" name="description" class="form-control" id="description" cols="30" rows="3">{{old('description')}}</textarea>
                 @error('description')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -109,8 +109,8 @@
                         <tr>
 
                             <td>{{$c->id}}</td>
-                            <td>{{$c->name}}</td>
-                            <td>{{$c->description}}</td>
+                            <td>{{substr($c->description,0,15)}}</td>
+                            <td>{{substr($c->description,0,30)}}</td>
                             <td>
                                 <button class="btn btn-sm bg-dark text-white"  data-bs-toggle="modal" data-bs-target="#ud-{{$c->id}}"><i class="fas fa-edit"></i></button>
                                 <button class="btn btn-sm bg-danger text-white"  data-bs-toggle="modal" data-bs-target="#m-{{$c->id}}"><i class="fas fa-trash-alt"></i></button>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" name="description" aria-label="description" value="{{old('description')}}" class="form-control" id="description" cols="30" rows="3"></textarea>
+                        <textarea name="description" name="description" aria-label="description"  class="form-control" id="description" cols="30" rows="3">{{old('description')}}</textarea>
                         @error('description')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -178,9 +178,11 @@
     </div>
 </div>
 
+
 {{-- modals for delete and update --}}
 @foreach ($categories as $c)
-{{-- Modals for category delete --}}
+
+ {{-- Modals for category delete --}}
   <div class="modal fade" id="m-{{$c->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -220,7 +222,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="Updatedescription" aria-label="description"  class="form-control" id="description" cols="30" rows="7">{{'Updatedescription',$c->description}}</textarea>
+                        <textarea name="Updatedescription" aria-label="description"  class="form-control" id="description" cols="30" rows="7">{{old('Updatedescription',$c->description)}}</textarea>
 
                     </div>
 
@@ -228,7 +230,7 @@
 
             </div>
             <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Create </button>
+            <button type="submit" class="btn btn-primary">Update </button>
             </div>
         </form>
       </div>

@@ -3,7 +3,7 @@
     const themeBtn=document.querySelector('.theme');
     const secNavTag=document.querySelector('.sec-nav');
     // init theme
-
+    theme('light');
     localStorage.getItem('theme')=='light'? theme('light'):theme('dark');
     //btn event
     themeBtn.addEventListener('click',()=>{

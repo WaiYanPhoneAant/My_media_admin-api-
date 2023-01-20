@@ -33,30 +33,36 @@ Route::middleware([
     Route::get('dashboard',[ProfileController::class,'index'])->name('dashboard');
 
 
+    Route::prefix('admin')->group(function () {
+        //admin Update
+        Route::post('/update',[ProfileController::class,'Accupdate'])->name('admin#update');
+        //admin direct to Change Password Page
+        Route::get('/PwChangePage',[ProfileController::class,'PasswordChangePage'])->name('admin#PwChangePage');
+        //admin direct to Change Password Page
+        Route::get('/deleteAcc/{id}',[ListController::class,'DeleteAccount'])->name('admin#deleteAcc');
+        //admin Change Password
+        Route::post('/PwChange',[ProfileController::class,'PasswordChange'])->name('admin#PwChange');
+        //adminList
+        Route::get('/list',[ListController::class,'index'])->name('admin#list');
+    });
 
-    //admin Update
-    Route::post('admin/update',[ProfileController::class,'Accupdate'])->name('admin#update');
 
-    //admin direct to Change Password Page
-    Route::get('admin/PwChangePage',[ProfileController::class,'PasswordChangePage'])->name('admin#PwChangePage');
-
-    //admin direct to Change Password Page
-    Route::get('admin/deleteAcc/{id}',[ListController::class,'DeleteAccount'])->name('admin#deleteAcc');
-
-    //admin Change Password
-    Route::post('admin/PwChange',[ProfileController::class,'PasswordChange'])->name('admin#PwChange');
-
-    //adminList
-    Route::get('admin/list',[ListController::class,'index'])->name('admin#list');
 
     // category
-    Route::get('category',[CategoryController::class,'index'])->name('admin#category');
-    Route::post('category/create',[CategoryController::class,'categoryCreate'])->name('category#create');
-    Route::post('category/update/{id}',[CategoryController::class,'categoryUpdate'])->name('category#update');
-    Route::get('category/delete/{id}',[CategoryController::class,'categoryDelete'])->name('category#Delete');
+    Route::prefix('category')->group(function () {
+        Route::get('/',[CategoryController::class,'index'])->name('admin#category');
+        Route::post('/create',[CategoryController::class,'categoryCreate'])->name('category#create');
+        Route::post('/update/{id}',[CategoryController::class,'categoryUpdate'])->name('category#update');
+        Route::get('/delete/{id}',[CategoryController::class,'categoryDelete'])->name('category#Delete');
+    });
+
 
     // post
-    Route::get('post',[PostController::class,'index'])->name('admin#post');
+
+    Route::prefix('post')->group(function () {
+        Route::get('/',[PostController::class,'index'])->name('admin#post');
+        Route::post('/postCreate',[PostController::class,'postCreate'])->name('postCreate');
+    });
     // trend_post
     Route::get('trandPost',[TrandPostController::class,'index'])->name('admin#trendPost');
 });
