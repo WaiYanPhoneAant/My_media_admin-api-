@@ -23,10 +23,10 @@
 
 <div class="d-lg-flex justify-content-center">
     <div class="d-none d-lg-block m-3 col-lg-5">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{route('postUpdate',$posts->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 m-auto text-center">
-                <img src="" width="150px" class="image" id="imagePreview-des">
+                <img src="" width="200px" class="image" id="imagePreview-des">
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Image</label>
@@ -88,10 +88,14 @@
         <div class="row mt-4 ">
           <div class="col-12 p-3">
                 <div class="wrapper">
-                    <h2 class="pb-1">{{$posts->title}}</h2>
+                    <div class="header pb-1">
+                        <h2>{{$posts->title}} </h2>
+                        <span class="badge text-bg-primary">{{$category[$posts->category_id-1]->name}}</span>
+                    </div>
+
                     @if ($posts->image)
-                        <div class="text-center py-4">
-                                <img src="{{asset('postImage/'.$posts->image)}}" class="image" alt=""width="100%">
+                        <div class="text-left py-4">
+                                <img src="{{asset('postImage/'.$posts->image)}}" class="image" alt=""width="80%">
                         </div>
                     @endif
                     <div class="body-text pt-1">
@@ -115,20 +119,17 @@
 
 <!-- Modal for category update -->
 <div class="modal fade" id="crateCategory" tabindex="-1" aria-labelledby="crateCategoryLabel" aria-hidden="true">
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="{{route('postUpdate',$posts->id)}}" method="POST" enctype="multipart/form-data">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="crateCategoryLabel">Create Posts</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
             @csrf
             <div class="modal-body">
-
-                @csrf
                 <div class="mb-3 m-auto text-center">
-                    <img src="" width="150px" class="image" id="imagePreview-res">
+                    <img src="" width="200px" class="image" id="imagePreview-res">
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Image</label>
