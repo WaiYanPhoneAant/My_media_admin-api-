@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+
 use Illuminate\Http\Request;
+
+
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -19,10 +24,8 @@ class PostController extends Controller
     public function postCreate(Request $request)
     {
         # code...
-
         $this->postValidator($request->toArray());
         $file=$request->file('image');
-
         if($file){
             $fileName=uniqid().'_'.$file->getClientOriginalName();
             $file->move(public_path().'/postImage',$fileName);
@@ -33,6 +36,23 @@ class PostController extends Controller
 
         Post::create($data);
         return returnSuccess($data,'Successfully create post');
+    }
+    // delete post
+    public function postDelete($id)
+    {
+        # code...
+        $file=Post::select('image')->where('id',$id)->first();
+        $delete=Post::where('id',$id)->delete();
+        if(File::exists(public_path().'/postImage/'.$file->image)){
+            File::delete(public_path().'/postImage/'.$file->image);
+        }
+        return returnSuccess($delete,'Successfully Deleted');
+    }
+    // postUpdate
+    public function postEdit($id){
+        $category=Category::get();
+        $posts=Post::where('id',$id)->first();
+        return view('admin.post.editPost',compact('posts','category'));
     }
     private function getPostData($data,$fileName){
         return [

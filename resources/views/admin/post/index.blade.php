@@ -27,7 +27,7 @@
 <div class="d-lg-flex justify-content-center">
 
 
-    <div class="d-none d-lg-block m-3 col-lg-4">
+    <div class="d-none d-lg-block m-3 col-lg-5">
         <form action="{{route('postCreate')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3 m-auto text-center">
@@ -64,7 +64,7 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" class="form-control" id="description"  cols="30" rows="3">{{old('description')}}</textarea>
+                <textarea name="description" class="form-control editor text-black" id="description"  cols="30" rows="10">{{old('description')}}</textarea>
                 @error('description')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -82,7 +82,7 @@
 
     </div>
 
-   <div class="m-1 col-lg-7">
+   <div class="m-1 col-lg-6">
     <div class="container-fluid">
         @error('Updatename')
             <div class="m-3 text-danger d-none d-lg-block">*{{$message}}</div>
@@ -137,13 +137,16 @@
                             <td>{{substr($p->title,0,15)}}</td>
                             <td>
                                 @if ($p->image)
+
                                     <img src="{{asset('postImage/'.$p->image)}}" alt="" width="100px">
                                 @else
-                                    <img src="{{asset('postImage/default.png')}}" alt="" width="100px">
+                                {{$p->image}}
+                                    <img src="{{asset('default/default.png')}}" alt="" width="100px">
                                 @endif
                             </td>
                             <td>
-                                <button class="btn btn-sm bg-dark text-white"  data-bs-toggle="modal" data-bs-target="#ud-{{$p->id}}"><i class="fas fa-edit"></i></button>
+                                {{-- data-bs-toggle="modal" data-bs-target="#ud-{{$p->id}} --}}
+                                <a href="{{route('postEdit',$p->id)}}" class="btn btn-sm bg-dark text-white" "><i class="fa-regular fa-eye"></i></a>
                                 <button class="btn btn-sm bg-danger text-white"  data-bs-toggle="modal" data-bs-target="#m-{{$p->id}}"><i class="fas fa-trash-alt"></i></button>
                               </td>
                         </tr>
@@ -173,13 +176,14 @@
 @section('modal')
 <!-- Modal for category create -->
 <div class="modal fade" id="crateCategory" tabindex="-1" aria-labelledby="crateCategoryLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <form action="{{route('postCreate')}}" method="POST" enctype="multipart/form-data">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="crateCategoryLabel">Create Posts</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{route('postCreate')}}" method="POST" enctype="multipart/form-data">
+
             @csrf
             <div class="modal-body">
 
@@ -216,9 +220,9 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 text-dark">
                     <label for="description" class="form-label">Description</label>
-                    <textarea name="description" class="form-control" id="description"  cols="30" rows="3">{{old('description')}}</textarea>
+                    <textarea name="description" class="form-control editor" id="description"  cols="30" rows="10">{{old('description')}}</textarea>
                     @error('description')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -231,9 +235,10 @@
             <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Create </button>
             </div>
-        </form>
+
       </div>
     </div>
+    </form>
 </div>
 
 {{-- modals for delete and update --}}
@@ -251,7 +256,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="#" type="button" class="btn btn-danger">Delete</a>
+          <a href="{{route('postDelete',$p->id)}}" type="button" class="btn btn-danger">Delete</a>
         </div>
       </div>
     </div>
@@ -278,12 +283,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="Updatedescription" aria-label="description"  class="form-control" id="description" cols="30" rows="7">{{old('Updatedescription',$p->description)}}</textarea>
-
+                        <textarea name="Updatedescription" aria-label="description"  class="form-control " id="description" cols="30" rows="7">{{ old('Updatedescription',$p->description) }}</textarea>
                     </div>
-
-
-
             </div>
             <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Create </button>
@@ -295,10 +296,6 @@
 
 
 @endforeach
-
-
-
-
 
 @endsection
 @section('extraJs')

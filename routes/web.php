@@ -62,6 +62,8 @@ Route::middleware([
     Route::prefix('post')->group(function () {
         Route::get('/',[PostController::class,'index'])->name('admin#post');
         Route::post('/postCreate',[PostController::class,'postCreate'])->name('postCreate');
+        Route::get('/postDelete/{id}',[PostController::class,'postDelete'])->name('postDelete');
+        Route::get('/postEdit/{id}',[PostController::class,'postEdit'])->name('postEdit');
     });
     // trend_post
     Route::get('trandPost',[TrandPostController::class,'index'])->name('admin#trendPost');

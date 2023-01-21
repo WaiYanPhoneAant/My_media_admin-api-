@@ -1,3 +1,7 @@
+
+.ck.ck-editor__main>.ck-editor__editable{
+    background: none !important;
+}
 /* width */
 ::-webkit-scrollbar {
     width: 6px;

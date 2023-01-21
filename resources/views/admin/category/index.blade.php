@@ -142,13 +142,14 @@
 @section('modal')
 <!-- Modal for category create -->
 <div class="modal fade" id="crateCategory" tabindex="-1" aria-labelledby="crateCategoryLabel" aria-hidden="true">
+    <form action="{{route('category#create')}}" method="POST">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="crateCategoryLabel">Create Category</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{route('category#create')}}" method="POST">
+
             @csrf
             <div class="modal-body">
 
@@ -173,9 +174,10 @@
             <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Create </button>
             </div>
-        </form>
+
       </div>
     </div>
+    </form>
 </div>
 
 
